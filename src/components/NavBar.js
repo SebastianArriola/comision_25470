@@ -7,7 +7,7 @@ import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
 
 
-const pages = ['Products', 'Contact', 'Info'];
+const pages = ['Home', 'Products', 'Info'];
 
 const NavBar = () => {
     return (
