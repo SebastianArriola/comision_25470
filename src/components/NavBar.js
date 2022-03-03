@@ -5,12 +5,14 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
+import CardWidget from './CardWidget';
 
 
 const pages = ['Home', 'Products', 'Info'];
 
 const NavBar = () => {
     return (
+        <>
         <AppBar position="static">
             <Container maxWidth="xl">
                 <Toolbar disableGutters>
@@ -18,7 +20,7 @@ const NavBar = () => {
                         variant="h6"
                         noWrap
                         component="div"
-                        sx={{ mr: 7, display: { xs: 'none', md: 'flex' } }}
+                        sx={{ mr: -10, display: { xs: 'none', md: 'flex' } }}
                     >
                         Guitars
                     </Typography>
@@ -31,10 +33,12 @@ const NavBar = () => {
                                 {page}
                             </Button>
                         ))}
-                    </Box>
+                    </Box >
+                    <CardWidget/>
                 </Toolbar>
             </Container>
         </AppBar>
+        </>
     );
 };
 export default NavBar;
