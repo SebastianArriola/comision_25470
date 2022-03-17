@@ -2,8 +2,6 @@ import React from 'react'
 
 const ItemDetail = ({item}) => {
 
-    console.log(item);
-
   return (
     <div>
         <h1>Detalle producto</h1>

@@ -1,39 +1,38 @@
 import React, { useEffect, useState } from 'react'
-
+import { useParams } from 'react-router-dom'
+import {productsData} from '../data/products.js'
 import ItemDetail from './ItemDetail'
 
 const ItemDetailContainer = () => {
 
     const [product, setProduct] = useState({})
-
-    const initialProduct = {
-      id: 1,
-      title: "Fender Stratocaster",
-      desc: "Its a guitar!",
-      price: 450,
-      pictureUrl: "https://i.pinimg.com/564x/5c/9f/71/5c9f71b2e196ccf71e72eb88b9f75be8.jpg"
-    }
-    
-      
+    const {id} = useParams();
+    const [loading, setLoading] = useState(true)
+    const productx = productsData.find(products => products.id === id);
     const getItem = () =>{
-
+        setLoading(true)
         const promesa = new Promise((res,rej)=>{
   
             setTimeout(() => {
-              res(initialProduct)
+              res(productx)
             }, 2000);
     
         })
     
         promesa.then((resp)=>{
     
-          setProduct(initialProduct);
+          setProduct(resp);
     
         })
         .catch((rej)=>{
     
           console.log('error')
     
+        })
+        .finally(()=>{
+
+          setLoading(false)
+
         })
 
         return promesa;
@@ -46,6 +45,7 @@ const ItemDetailContainer = () => {
 
   return (
     <>
+        {loading && "Cargando..."}
         <ItemDetail item={product}/>
     </>
   )

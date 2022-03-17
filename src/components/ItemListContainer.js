@@ -1,57 +1,55 @@
 import React, { useEffect, useState } from 'react'
+import { productsData } from '../data/products.js'
+import { useParams } from 'react-router-dom'
 import ItemList from './ItemList'
 
 const ItemListContainer = (props) => {
 
   const [products, setProducts] = useState([])
+  const [loading, setLoading] = useState(true)
+  const { id } = useParams();
+  const initialProductsFilter = productsData.filter(element => element.category === id)
 
-  const initialProducts = [{
-    id: 1,
-    title: "Fender Stratocaster",
-    price: 450,
-    pictureUrl: "https://i.pinimg.com/564x/5c/9f/71/5c9f71b2e196ccf71e72eb88b9f75be8.jpg"
-  },
-  {
-    id: 2,
-    title: "Gibson Les Paul",
-    price: 450,
-    pictureUrl: "https://cdn.imgbin.com/13/10/13/imgbin-semi-acoustic-guitar-taylor-guitars-electric-guitar-electric-guitar-z4ERsQDNS42qVKhcyAKd0a2y8.jpg"
-  },
-  {
-    id: 3,
-    title: "Gibson Guitar",
-    price: 800,
-    pictureUrl: "https://toppng.com/uploads/preview/black-electric-guitar-11530936970df8gvueqvz.png"
-  }  
-  ]
-    
+  const getItems = () => {
+    setLoading(true);
+    const promesa = new Promise((res, rej) => {
+      setTimeout(() => {
+        initialProductsFilter.length === 0 ? res(productsData) : res(initialProductsFilter)
+      }, 2000);
+
+    })
+
+    promesa.then((resp) => {
+
+      setProducts(resp)
+
+    })
+      .catch((rej) => {
+
+        console.log('error')
+
+
+      })
+      .finally(() => {
+
+        setLoading(false)
+
+      })
+
+      return promesa;
+
+  }
+
   useEffect(() => {
-    const promesa = new Promise((res,rej)=>{
+    getItems();
+  }, [id])
 
-        setTimeout(() => {
-          res(initialProducts)
-        }, 2000);
-
-    })
-
-    promesa.then((resp)=>{
-
-      setProducts(initialProducts);
-
-    })
-    .catch((rej)=>{
-
-      console.log('error')
-
-    })
-  })
-  
 
   return (
     <div>
-
-        <h1>{props.greeting}</h1>
-        <ItemList items={products}/>
+      <h1>{props.greeting}</h1>
+      {loading && "Cargando..."}
+      <ItemList items={products} />
 
     </div>
   )
