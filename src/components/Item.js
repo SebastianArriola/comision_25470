@@ -1,6 +1,5 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import ItemCount from './ItemCount'
 
 
 const Item = ({item}) => {
@@ -9,7 +8,6 @@ const Item = ({item}) => {
         <p>{item.title}</p>
         <Link to={"/item/"+item.id}><img src={item.pictureUrl}></img></Link>
         <p>Price: {item.price}</p>
-        <ItemCount/>
     </div>
   )
 }

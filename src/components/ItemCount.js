@@ -1,74 +1,56 @@
-import { Button } from '@material-ui/core'
+import { Box, Button } from '@material-ui/core'
 import React, { useState } from 'react'
 
-const ItemCount = () => {
+const ItemCount = ({initial, stock, onAdd}) => {
 
-    const [count, setCount] = useState(1);
-    let stockAvailable = true;
+    const [count, setCount] = useState(initial);
 
-    const stock = 5;
+    const handleInc = () =>{
+        if(count<stock){
 
-    const onAdd = () =>{
+            setCount(count+1)
 
-        setCount(count+1);
+        }
 
     }
     
-    const onDec = () =>{
-
-        if(count>0) {
+    const handleDec = () =>{
+        
+        if(count>initial) {
 
             setCount(count-1);
-
+           
         }
         
 
     }
 
-    const stockAvailableRevision = () =>{
+    const handleConfirm = () =>{
 
-        if(count>=stock){
-
-            stockAvailable = false;
-
-        }else{
-
-            stockAvailable = true;
-
-        }
-
-        return stockAvailable
+        onAdd(count)
 
     }
-    if(stockAvailableRevision(count)){
-
-        return (<div>
-
-            <Button onClick={onDec}variant="contained" component="span">
-                -
-            </Button>
-            <label>{count}</label>
-            <Button onClick={onAdd} variant="contained" component="span">
-                +
-            </Button>
-
-        </div>)
-
-    }else{
+    
         return(<div>
 
-            <Button onClick={onDec}variant="contained" component="span">
+            <Button onClick={handleDec}variant="contained" component="span">
                 -
             </Button>
             <label>{count}</label>
-            <Button onClick={onAdd} variant="contained" disabled>
+            <Button onClick={handleInc} variant="contained" component="span">
                 +
             </Button>
+            <Box mt={1} ml={2}>
+            <Button onClick={handleConfirm} variant="contained" component="span">
+                Confirm
+            </Button>
+            </Box>
+            
 
         </div>)
         
 
-    }
+
 }
 
 export default ItemCount
