@@ -1,10 +1,11 @@
 import React from 'react'
 
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
+import { Link } from 'react-router-dom';
 
 const CardWidget = () => {
   return (
-    <div><ShoppingCartIcon/></div>
+    <div><Link to={"/cart"}><ShoppingCartIcon/></Link></div>
   )
 }
 

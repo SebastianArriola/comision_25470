@@ -11,6 +11,21 @@ const ItemDetailContainer = () => {
     const [loading, setLoading] = useState(true)
     const [confirm, setConfirm] = useState(false)
     const productx = productsData.find(products => products.id === id);
+
+    const onAdd = (count) =>{
+
+      if(count !== undefined){
+
+        setConfirm(true);
+        
+
+      }
+
+      
+      console.log(count);
+
+    }
+
     const getItem = () =>{
         setLoading(true)
         const promesa = new Promise((res,rej)=>{
@@ -41,16 +56,6 @@ const ItemDetailContainer = () => {
 
     }
 
-    const onAdd = (count) =>{
-
-      if(count != undefined){
-
-        setConfirm(true);
-
-      }
-
-    }
-
     useEffect(() => {
         getItem()
     },[])
@@ -60,7 +65,7 @@ const ItemDetailContainer = () => {
         {loading && "Cargando..."}
         {confirm ? <><ItemDetail item={product}/>
                     <Link to="/cart">Terminar compra</Link></> 
-                : <><ItemDetail item={product}/>
+                : <><ItemDetail item={product} />
                 <ItemCount initial={1} stock={5} onAdd={onAdd}/></>}
     </>
   )
