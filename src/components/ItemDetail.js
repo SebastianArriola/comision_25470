@@ -1,11 +1,17 @@
-import { Button } from '@material-ui/core'
 import React, { useContext } from 'react'
 import { contexto } from './CartContext';
+import ItemCount from './ItemCount';
 
-const ItemDetail = ({item, count}) => {
+const ItemDetail = ({item}) => {
 
   const contextCart = useContext(contexto);
   const addItem = contextCart.addItem;
+
+  const onAdd = (count) =>{
+
+      addItem(item, count);
+
+  }
 
   return (
     <div>
@@ -14,7 +20,7 @@ const ItemDetail = ({item, count}) => {
         <p>{item.title}</p>
         <p>{item.desc}</p>
         <p>Price: {item.price}</p>
-        <Button onClick={()=>{addItem(item, count)}}>Comprar</Button>
+        <ItemCount initial={1} stock={5} onAdd={onAdd}/>
     </div>
   )
 }

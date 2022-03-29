@@ -3,73 +3,79 @@ import React, { createContext, useState } from 'react'
 export const contexto = createContext();
 const { Provider } = contexto;
 
-export const CartContext = ({children}) => {
+export const CartContext = ({ children }) => {
 
-    const [cart, setCart] = useState([]);
+  const [cart, setCart] = useState([]);
 
-    const addItem = ({id, title, price, pictureUrl}, quantity) =>{
+  const addItem = (item, quantity) => {
 
-      if(isInCart(id)){
+    let cartProduct = { item, quantity };
 
-          quantity = quantity+1
+    let cartAux = [];
 
-      }else{
+    if (!isInCart(item.id)) {
 
-        let carro = cart.slice(0);
+      cartAux = [cartProduct, ...cart];
 
-        carro.push({id, title, price, pictureUrl, quantity});
+    }else{
 
-        setCart(carro);
+      cartProduct = cart.find(producto => producto.item.id === item.id);
 
-      }
+      cartProduct.quantity =  cartProduct.quantity + quantity;
 
-    }
-
-    const clear = () =>{
-
-      setCart([]);
-
-    }
-    
-    const isInCart = (id) =>{
-
-      let flag =  false;
-
-      const producto = cart.find(products => products.id === id);
-
-      if(producto !== undefined){
-
-        flag = true;
-
-      }
-
-      return flag;
+      cartAux = [...cart];
 
     }
 
-    const removeItem = (id) =>{
+    setCart(cartAux);
 
-      let carro = cart.filter((item) => item.id !== id);
+  }
 
-      setCart(carro);
+  const clear = () => {
 
+    setCart([]);
+
+  }
+
+  const isInCart = (id) => {
+
+    let flag = false;
+
+    const producto = cart.find(item => item.item.id === id);
+
+    if (producto !== undefined) {
+
+      flag = true;
 
     }
 
-    const contextValue =  {
+    return flag;
 
-      cart: cart,
-      addItem: addItem,
-      clear: clear,
-      removeItem: removeItem
+  }
+
+  const removeItem = (id) => {
+
+    let carro = cart.filter((item) => item.item.id !== id);
+
+    setCart(carro);
+
+
+  }
+
+  const contextValue = {
+
+    cart: cart,
+    addItem: addItem,
+    clear: clear,
+    removeItem: removeItem
 
   }
 
   return (
     <>
-        <Provider value={contextValue}>
-            {children}
-        </Provider>
+      <Provider value={contextValue}>
+        {children}
+      </Provider>
     </>
   )
 }

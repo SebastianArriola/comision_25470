@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
-import { Link, useParams } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import {productsData} from '../data/products.js'
-import ItemCount from './ItemCount.js'
 import ItemDetail from './ItemDetail'
 
 const ItemDetailContainer = () => {
@@ -9,22 +8,7 @@ const ItemDetailContainer = () => {
     const [product, setProduct] = useState({})
     const {id} = useParams();
     const [loading, setLoading] = useState(true)
-    const [confirm, setConfirm] = useState(false)
     const productx = productsData.find(products => products.id === id);
-
-    const onAdd = (count) =>{
-
-      if(count !== undefined){
-
-        setConfirm(true);
-        
-
-      }
-
-      
-      console.log(count);
-
-    }
 
     const getItem = () =>{
         setLoading(true)
@@ -63,10 +47,9 @@ const ItemDetailContainer = () => {
   return (
     <>
         {loading && "Cargando..."}
-        {confirm ? <><ItemDetail item={product}/>
-                    <Link to="/cart">Terminar compra</Link></> 
-                : <><ItemDetail item={product} />
-                <ItemCount initial={1} stock={5} onAdd={onAdd}/></>}
+        <ItemDetail item={product}/>
+                    
+                
     </>
   )
 }

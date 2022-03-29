@@ -14,11 +14,11 @@ const Cart = () => {
 
       {cart.map(item=>{
 
-          return (<><p key={item.id}>{item.title}</p>
-                  <p>{item.quantity}</p>
-                  <img src={item.pictureUrl}></img>
-                  <p>{item.price}</p>
-                  <Button onClick={()=>{removeItem(item.id)}}>remove</Button>
+          return (<><p key={item.item.id}>{item.item.title}</p>
+                  <p>CANTIDAD: {item.quantity}</p>
+                  <img src={item.item.pictureUrl}></img>
+                  <p>TOTAL: {item.item.price * item.quantity}</p>
+                  <Button onClick={()=>{removeItem(item.item.id)}}>remove</Button>
                   </>
                   )
 
