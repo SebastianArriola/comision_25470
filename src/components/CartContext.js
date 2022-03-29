@@ -6,6 +6,8 @@ const { Provider } = contexto;
 export const CartContext = ({ children }) => {
 
   const [cart, setCart] = useState([]);
+  const [total, setTotal] = useState(0);
+  const [cantTotal, setCantTotal] = useState(0);
 
   const addItem = (item, quantity) => {
 
@@ -27,13 +29,21 @@ export const CartContext = ({ children }) => {
 
     }
 
+    setTotal(total+(item.price * quantity));
+
+    setCantTotal(cantTotal+quantity);
+
     setCart(cartAux);
 
   }
 
+  console.log(cantTotal);
+
   const clear = () => {
 
     setCart([]);
+    setTotal(0);
+    setCantTotal(0);
 
   }
 
@@ -53,9 +63,15 @@ export const CartContext = ({ children }) => {
 
   }
 
-  const removeItem = (id) => {
+  const removeItem = (item) => {
 
-    let carro = cart.filter((item) => item.item.id !== id);
+    const producto = cart.find(product => product.item === item)
+
+    setTotal(total-(producto.item.price * producto.quantity));
+
+    setCantTotal(cantTotal-producto.quantity);
+
+    let carro = cart.filter((product) => product.item.id !== item.id);
 
     setCart(carro);
 
@@ -65,6 +81,8 @@ export const CartContext = ({ children }) => {
   const contextValue = {
 
     cart: cart,
+    total: total,
+    cantTotal: cantTotal,
     addItem: addItem,
     clear: clear,
     removeItem: removeItem

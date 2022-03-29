@@ -1,11 +1,18 @@
-import React from 'react'
+import React, { useContext } from 'react'
 
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import { Link } from 'react-router-dom';
+import { contexto } from './CartContext';
 
 const CardWidget = () => {
+
+  const contextCart = useContext(contexto);
+  const cantTotal = contextCart.cantTotal;
+
   return (
-    <div><Link to={"/cart"}><ShoppingCartIcon/></Link></div>
+    <div>
+      {cantTotal !== 0 && <Link to={"/cart"}><ShoppingCartIcon/>{cantTotal}</Link>}
+    </div>
   )
 }
 
