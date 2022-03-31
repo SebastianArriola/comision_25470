@@ -37,8 +37,6 @@ export const CartContext = ({ children }) => {
 
   }
 
-  console.log(cantTotal);
-
   const clear = () => {
 
     setCart([]);
