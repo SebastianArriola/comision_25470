@@ -1,42 +1,58 @@
 import React, { useEffect, useState } from 'react'
-import { productsData } from '../data/products.js'
 import { useParams } from 'react-router-dom'
 import ItemList from './ItemList'
+import { db } from './firebaseConfig.js'
+import { getDocs, collection, query, where} from 'firebase/firestore'
 
 const ItemListContainer = (props) => {
 
   const [products, setProducts] = useState([])
   const [loading, setLoading] = useState(true)
   const { id } = useParams();
-  const initialProductsFilter = productsData.filter(element => element.category === id)
 
   const getItems = () => {
-    setLoading(true);
-    const promesa = new Promise((res, rej) => {
-      setTimeout(() => {
-        initialProductsFilter.length === 0 ? res(productsData) : res(initialProductsFilter)
-      }, 2000);
 
-    })
+    if (id) {
 
-    promesa.then((resp) => {
+      const q = query(collection(db, "guitars"), where("category", "==", id));
+      getDocs(q)
+        .then((resp) => {
 
-      setProducts(resp)
+          setProducts(resp.docs.map(p => ({ product: p.data() })))
 
-    })
-      .catch((rej) => {
+        })
+        .catch((err) => {
 
-        console.log('error')
+          console.log(err);
 
+        })
+        .finally(()=>{
+
+          setLoading(false)
+
+        })
+
+
+    } else {
+
+      getDocs(collection(db, "guitars"))
+      .then((resp)=>{
+
+        setProducts(resp.docs.map(p=>({product: p.data()})))
 
       })
-      .finally(() => {
+      .catch((err)=>{
+
+        console.log(err);
+
+      })
+      .finally(()=>{
 
         setLoading(false)
 
       })
 
-      return promesa;
+    }
 
   }
 
@@ -49,7 +65,7 @@ const ItemListContainer = (props) => {
     <div>
       <h1>{props.greeting}</h1>
       {loading && "Cargando..."}
-      <ItemList items={products} />
+      <ItemList products={products} />
 
     </div>
   )
