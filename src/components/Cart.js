@@ -95,7 +95,7 @@ const Cart = () => {
           <input type="text" placeholder='Name' name="name" value={name} onChange={handleInputChange} autoComplete='off' />
           <input type="number" placeholder='Phone' name="phone" value={phone} onChange={handleInputChange} autoComplete='off' />
           <input type="text" placeholder='Email' name="email" value={email} onChange={handleInputChange} autoComplete='off' />
-          <button type="submit" >Login</button>
+          <button type="submit" >Register</button>
 
         </form></>}
         
