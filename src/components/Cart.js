@@ -85,8 +85,9 @@ const Cart = () => {
       )
 
 
-    }) : <><p className="cart-empty">Su carrito esta vacio.</p>
-      <Box textAlign="center" margin={5}><Link className="cart-link" to="/">Volver al catalogo</Link></Box></>}
+    }) : <>{numberBuy === undefined ? <><p className="cart-empty">Su carrito esta vacio.</p>
+    <Box textAlign="center" margin={5}><Link className="cart-link" to="/">Volver al catalogo</Link></Box></> : <><p className="cart-empty">Su compra fue realizada, numero de compra: {numberBuy}.</p>
+    <Box textAlign="center" margin={5}><Link className="cart-link" to="/">Volver al catalogo</Link></Box></>}</>}
 
       {cart.length !== 0 && <><p className='cart__total'>TOTAL: {"$" + total}</p>
         <Box textAlign="right"><Button onClick={clear} variant="outlined"><span className='cart__clear'>LIMPIAR CARRITO</span></Button></Box>
@@ -135,8 +136,6 @@ const Cart = () => {
             <Button type="submit" variant='outlined'>Registrarse</Button>
             </Box>
           </ValidatorForm></>}
-
-        {numberBuy !== undefined && <p>Thanks for buy! Your buy tag is: {numberBuy}</p>}
 
       </>}
 
