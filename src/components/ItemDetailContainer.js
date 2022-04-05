@@ -3,6 +3,8 @@ import { useParams } from 'react-router-dom'
 import ItemDetail from './ItemDetail'
 import { getDoc, doc } from 'firebase/firestore'
 import { db } from './firebaseConfig.js'
+import Loader from './Loader'
+import 'animate.css';
 
 const ItemDetailContainer = () => {
 
@@ -34,12 +36,17 @@ const ItemDetailContainer = () => {
 
     useEffect(() => {
         getItem()
-    },[])
+    },[id])
 
   return (
     <>
-        {loading && "Cargando..."}
-        <ItemDetail item={product}/>
+        <div className='product-single__container'>
+          
+
+          {loading ? <Loader/> : <ItemDetail item={product}/>}
+          
+
+        </div>
                     
                 
     </>

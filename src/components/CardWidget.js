@@ -10,9 +10,9 @@ const CardWidget = () => {
   const cantTotal = contextCart.cantTotal;
 
   return (
-    <div>
-      {cantTotal !== 0 && <Link to={"/cart"}><ShoppingCartIcon/>{cantTotal}</Link>}
-    </div>
+    
+      <Link to={"/cart"} className='cart__link'><ShoppingCartIcon/>{cantTotal !== 0 && <span className="cart__cantTotal">{cantTotal}</span>}</Link>
+    
   )
 }
 

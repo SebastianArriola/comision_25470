@@ -3,6 +3,8 @@ import { useParams } from 'react-router-dom'
 import ItemList from './ItemList'
 import { db } from './firebaseConfig.js'
 import { getDocs, collection, query, where} from 'firebase/firestore'
+import Banner from './Banner'
+import Loader from './Loader'
 
 const ItemListContainer = (props) => {
 
@@ -62,12 +64,21 @@ const ItemListContainer = (props) => {
 
 
   return (
-    <div>
-      <h1>{props.greeting}</h1>
-      {loading && "Cargando..."}
-      <ItemList products={products} />
+    <>
+        <Banner />
 
-    </div>
+
+      <main className='products__container animate__animated animate__fadeIn'>
+
+        <h2 className='products__heading'>nuestros productos</h2>
+
+        {loading && <Loader />}
+
+        <ItemList products={products} />
+        
+      </main>
+      
+    </>
   )
 }
 
