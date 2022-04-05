@@ -537,6 +537,12 @@ img {
         padding: 1rem;
     
     }
+    .form__field{
+
+        width: 30%;
+    
+    }
+    
 }
 
 .form__contenedor{
@@ -566,11 +572,6 @@ img {
 
 }
 
-.form__field{
-
-    width: 30%;
-
-}
 
 
 
