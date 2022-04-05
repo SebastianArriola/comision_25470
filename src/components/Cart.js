@@ -99,6 +99,7 @@ const Cart = () => {
                     onChange={handleInputChange}
                     name="name"
                     value={name}
+                    className="form__field"
                     validators={['required']}
                     errorMessages={['Este campo es obligatorio.']}
                     autoComplete="off"
@@ -112,6 +113,7 @@ const Cart = () => {
                     onChange={handleInputChange}
                     name="phone"
                     value={phone}
+                    className="form__field"
                     validators={['required', 'isNumber']}
                     errorMessages={['Este campo es obligatorio.', 'Debe ingresar un numero']}
                     autoComplete="off"
@@ -123,6 +125,7 @@ const Cart = () => {
                     onChange={handleInputChange}
                     name="email"
                     value={email}
+                    className="form__field"
                     validators={['required', 'isEmail']}
                     errorMessages={['Este campo es obligatorio.', 'Este email no es valido']}
                     autoComplete="off"
