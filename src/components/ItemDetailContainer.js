@@ -36,7 +36,7 @@ const ItemDetailContainer = () => {
 
     useEffect(() => {
         getItem()
-    },[id])
+    })
 
   return (
     <>
