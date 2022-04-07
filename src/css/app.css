@@ -583,10 +583,16 @@ img {
 
     .cart__container{
 
-        min-height: 74vh;
+        min-height: 73.5vh;
         display: flex;
         flex-direction: column;
         justify-content: center;
+
+    }
+
+    .product-single__container{
+
+        min-height: 71vh;
 
     }
     
