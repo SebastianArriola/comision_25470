@@ -455,6 +455,8 @@ img {
 
 }
 
+
+
 .count__edit__grid{
 
     display: grid;
@@ -578,6 +580,15 @@ img {
         
     
     }
+
+    .cart__container{
+
+        min-height: 60vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+
+    }
     
 }
 
@@ -607,6 +618,7 @@ img {
     text-align: center;
 
 }
+
 
 
 
