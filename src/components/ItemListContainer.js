@@ -12,8 +12,7 @@ const ItemListContainer = (props) => {
   const [loading, setLoading] = useState(true)
   const { id } = useParams();
 
-  const getItems = () => {
-
+  useEffect(() => {
     if (id) {
 
       const q = query(collection(db, "guitars"), where("category", "==", id));
@@ -55,12 +54,7 @@ const ItemListContainer = (props) => {
       })
 
     }
-
-  }
-
-  useEffect(() => {
-    getItems();
-  })
+  },[id])
 
 
   return (

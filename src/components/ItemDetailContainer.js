@@ -12,43 +12,25 @@ const ItemDetailContainer = () => {
     const {id} = useParams();
     const [loading, setLoading] = useState(true)
 
-    const getItem = () =>{
-        
-        const docRef = doc(db, "guitars", id);
+    useEffect(() => {
+      const docRef = doc(db, "guitars", id);
         getDoc(docRef)
         .then((resp)=>{
-
           setProduct(resp.data())
-
         })
         .catch((err)=>{
-
           console.log(err);
-
         })
         .finally(()=>{
-
           setLoading(false);
-
         })
-
-    }
-
-    useEffect(() => {
-        getItem()
     })
 
   return (
     <>
         <div className='product-single__container'>
-          
-
           {loading ? <Loader/> : <ItemDetail item={product}/>}
-          
-
-        </div>
-                    
-                
+        </div>      
     </>
   )
 }
