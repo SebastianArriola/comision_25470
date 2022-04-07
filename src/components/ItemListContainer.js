@@ -60,7 +60,7 @@ const ItemListContainer = (props) => {
 
   useEffect(() => {
     getItems();
-  })
+  },[id])
 
 
   return (

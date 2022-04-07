@@ -5,6 +5,8 @@ import { serverTimestamp, addDoc, collection } from 'firebase/firestore';
 import { contexto } from './CartContext'
 import { db } from './firebaseConfig';
 import DeleteRoundedIcon from '@material-ui/icons/DeleteRounded';
+import EditIcon from '@material-ui/icons/Edit';
+import CheckIcon from '@material-ui/icons/Check';
 import { ValidatorForm, TextValidator} from 'react-material-ui-form-validator';
 
 const Cart = () => {
@@ -14,6 +16,9 @@ const Cart = () => {
   const cart = contextCart.cart;
   const removeItem = contextCart.removeItem;
   const total = contextCart.total;
+  const editCart = contextCart.editCart;
+  const [count, setCount] = useState(1)
+  const [edit, setEdit] = useState(new Array(cart.length));
   const [registered, setRegistered] = useState(false);
   const [numberBuy, setNumberBuy] = useState();
   const [form, setForm] = useState({
@@ -40,6 +45,44 @@ const Cart = () => {
 
     e.preventDefault();
     setRegistered(true);
+
+  }
+
+  const handleInc = (stock) => {
+    
+
+        setCount(count + 1)
+
+    
+
+  }
+
+  const handleDec = (stock) => {
+
+    
+
+        setCount(count - 1);
+
+    
+
+
+  }
+
+  const handleEdit = (i, quantity) =>{
+
+    setCount(quantity);
+    let aux = [...edit];
+    aux[i] = true;
+    setEdit(aux);
+
+  }
+
+  const updateCart = (item, quantity, i) =>{
+
+    let aux = [...edit];
+    aux[i] = false;
+    editCart(item,quantity);
+    setEdit(aux);
 
   }
 
@@ -72,7 +115,7 @@ const Cart = () => {
   }
 
   return (
-    <div className='cart__container animate__animated animate__fadeIn'>{cart.length !== 0 ? cart.map(item => {
+    <div className='cart__container animate__animated animate__fadeIn'>{cart.length !== 0 ? cart.map((item, i) => {
 
       return (<div key={item.item.id} className='cart__grid'>
         <img className='cart__img' src={item.item.pictureUrl} alt="product_image"></img>
@@ -80,7 +123,8 @@ const Cart = () => {
         <p className='cart__price'>{"$" + item.item.price}</p>
         <p className='cart__cant'>U.{item.quantity}</p>
         <p className='cart__subtotal'>{"$" + item.item.price * item.quantity}</p>
-        <Button variant='outlined' startIcon={<DeleteRoundedIcon />} onClick={() => { removeItem(item.item) }}>BORRAR</Button>
+        {!edit[i] ? <Button onClick={()=>handleEdit(i, item.quantity)} size="small"><EditIcon/></Button> : <div className="count__edit__grid"><Button onClick={handleDec}>-</Button><span>{count}</span><Button onClick={handleInc}>+</Button><Button className='check__center' onClick={() => { updateCart(item.item, count, i) }}><CheckIcon /></Button></div>}
+        <Button style={{maxWidth: '10rem', minWidth: '4rem', textAlign:"left"}} onClick={() => { removeItem(item.item) }}><DeleteRoundedIcon/></Button>
       </div>
       )
 

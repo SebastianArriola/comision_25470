@@ -76,6 +76,24 @@ export const CartContext = ({ children }) => {
 
   }
 
+  const editCart = (item, quantity) =>{
+
+    let cartProduct = cart.find(producto => producto.item.id === item.id);
+
+    let totalEnd = cartProduct.quantity - quantity;
+
+    cartProduct.quantity = quantity;
+
+    let cartAux = [...cart];
+
+    setTotal(total-(cartProduct.item.price * totalEnd));
+
+    setCantTotal(cantTotal - totalEnd);
+
+    setCart(cartAux);
+
+  }
+
   const contextValue = {
 
     cart: cart,
@@ -83,7 +101,8 @@ export const CartContext = ({ children }) => {
     cantTotal: cantTotal,
     addItem: addItem,
     clear: clear,
-    removeItem: removeItem
+    removeItem: removeItem,
+    editCart: editCart
 
   }
 
