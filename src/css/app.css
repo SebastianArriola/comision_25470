@@ -62,11 +62,6 @@ img {
 
 }
 
-.header__logo{
-
-    width: 9rem;
-
-}
 
 .navegacion {
 
@@ -103,12 +98,28 @@ img {
 
 }
 
+.img__logo{
+
+    max-width: 30rem;
+    margin-left: 6rem;
+    margin-bottom: 4rem;
+
+}
+
 @media (min-width: 768px){
 
     .products__grid{
 
         grid-template-columns: repeat(2, 1fr);
 
+    }
+
+    .img__logo{
+
+        max-width: 30rem;
+        margin-left: 0rem;
+        margin-bottom: 0rem;
+    
     }
 
 }
@@ -468,9 +479,17 @@ img {
 
 }
 
-.span__delete{
 
-    display: none;
+@media (min-width: 300px){
+
+    .cart__container{
+
+        min-height: 55vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+
+    }
 
 }
 
@@ -583,7 +602,7 @@ img {
 
     .cart__container{
 
-        min-height: 73.5vh;
+        min-height: 66vh;
         display: flex;
         flex-direction: column;
         justify-content: center;
