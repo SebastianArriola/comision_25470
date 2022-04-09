@@ -13,7 +13,7 @@ const NavBar = () => {
             <header className='header'>
                 <div className='header__container'>
                     <div className='header__barra animate__animated animate__fadeIn'>
-                        <Link to="/" className='navegacion__enlace'><img className="img__logo" src={logo}/></Link>
+                        <Link to="/" className='navegacion__enlace'><img className="img__logo" src={logo} alt="logo_img"/></Link>
                         <nav className='navegacion'>
                             <Link to="/" className='navegacion__enlace navegacion__inicio'>inicio</Link>
                             {pages.map((page, index) => {
