@@ -11,7 +11,8 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-The page will reload when you make changes.\
+The page will reload when you make changes.\![demo](https://user-images.githubusercontent.com/62004212/163103350-905b1d21-d078-4fbf-af2a-f8b7ab080b86.gif)
+
 You may also see any lint errors in the console.
 
 ### `npm test`
