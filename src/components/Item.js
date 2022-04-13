@@ -21,13 +21,13 @@ const Item = ({ products }) => {
 
   return (
     <div className='product animate__animated animate__fadeIn'>
-      <img src={product.pictureUrl} alt="product_image"></img>
+      <img className='product__image' src={product.pictureUrl} alt="product_image"></img>
       <div className='product__data'>
         <p className='product__name'>{product.title}</p>
         <p className='product__description'>{product.description}</p>
         <p className='product__price'>{"$" + product.price}</p>
         <ThemeProvider theme={theme}>
-          <Box textAlign='center'>
+          <Box textAlign='center' marginBottom={3}>
             <Button className='product__button' onClick={onDetail} variant='outlined' size='large' color='primary'><Link to={"/item/" + product.id} className='product__link'>Ver producto</Link></Button>
           </Box>
         </ThemeProvider>
