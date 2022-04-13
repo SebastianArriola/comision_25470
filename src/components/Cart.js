@@ -8,6 +8,7 @@ import DeleteRoundedIcon from '@material-ui/icons/DeleteRounded';
 import EditIcon from '@material-ui/icons/Edit';
 import CheckIcon from '@material-ui/icons/Check';
 import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
+import { toast } from 'react-toastify';
 
 const Cart = () => {
 
@@ -25,11 +26,12 @@ const Cart = () => {
 
     name: "",
     phone: "",
-    email: ""
+    email: "",
+    repeatEmail: ""
 
   });
 
-  const { name, phone, email } = form;
+  const { name, phone, email, repeatEmail } = form;
 
   const handleInputChange = ({ target }) => {
 
@@ -43,6 +45,15 @@ const Cart = () => {
   const handleLogin = (e) => {
     e.preventDefault();
     setRegistered(true);
+    toast.success("Registro exitoso", {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });  
   }
 
   const handleInc = (stock) => {
@@ -85,7 +96,23 @@ const Cart = () => {
         console.log(err);
       })
 
+    toast.success("Compra exitosa", {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });  
+
   }
+  ValidatorForm.addValidationRule('isEmailMatch', (value) => {
+    if (value !== email) {
+        return false;
+    }
+    return true;
+});
 
 
   return (
@@ -143,6 +170,18 @@ const Cart = () => {
                 className="form__field"
                 validators={['required', 'isEmail']}
                 errorMessages={['Este campo es obligatorio.', 'Este email no es valido']}
+                autoComplete="off"
+              />
+            </div>
+            <div className='form__div'>
+              <TextValidator
+                label="Email confirm"
+                onChange={handleInputChange}
+                name="repeatEmail"
+                value={repeatEmail}
+                className="form__field"
+                validators={['required', 'isEmail', 'isEmailMatch']}
+                errorMessages={['Este campo es obligatorio.', 'Este email no es valido', 'Ambos mail deben ser iguales']}
                 autoComplete="off"
               />
             </div>

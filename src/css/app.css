@@ -13,7 +13,7 @@ html {
 }
 body {
     font-size: 2rem;
-    font-family: var(--fuente-principal);
+    font-family: sans-serif;
     line-height: 1.5;
 }
 img {
@@ -492,6 +492,13 @@ img {
     }
 
 }
+.loader__container{
+
+    text-align: center;
+    padding: 14rem;
+
+}
+
 
 @media (min-width: 768px){
 
@@ -611,9 +618,15 @@ img {
 
     .product-single__container{
 
-        min-height: 71vh;
+        min-height: 65vh;
 
     }
+    .loader__container{
+
+        text-align: center;
+        padding: 25rem;
+    
+    }    
     
 }
 
@@ -637,13 +650,6 @@ img {
     text-align: center;
 
 }
-
-.loader{
-
-    text-align: center;
-
-}
-
 
 
 
