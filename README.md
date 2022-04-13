@@ -36,6 +36,18 @@ The project consists of simulating the operation of an e-commerce using React, R
    
    **npm start**
 
+## How to use
+
+1. Browse through the different categories and choose with the button "View product" the desired product.
+
+2. Choose the quantity of products you want, then press "add to cart".
+
+3. In the cart you can edit the quantity or delete the products you do not want.
+
+4. To confirm the purchase you must register in the form below, for that click on "register".
+
+5. Finally, press "confirm purchase" to finish and get your purchase number.
+
 ## Demo
 
 [Guitar South](https://ecommerce-react-coderhouse.netlify.app)
