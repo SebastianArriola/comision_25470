@@ -18,11 +18,11 @@ The project consists of simulating the operation of an e-commerce using React, R
 
 1. Download and install Node.js
 
-   **https://nodejs.org/en/download/**
+   **[NodeJS](https://nodejs.org/en/download/)**
 
 2. Download and install Git
 
-   **https://git-scm.com**
+   **[Git]https://git-scm.com**
 
 3. Open Git Bash and clone repository on your PC. On the command line, run the following command:
 
