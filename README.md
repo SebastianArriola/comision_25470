@@ -22,7 +22,7 @@ The project consists of simulating the operation of an e-commerce using React, R
 
 2. Download and install Git
 
-   **[Git]https://git-scm.com**
+   **[Git](https://git-scm.com)**
 
 3. Open Git Bash and clone repository on your PC. On the command line, run the following command:
 
