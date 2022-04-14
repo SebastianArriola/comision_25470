@@ -18,7 +18,8 @@ const ItemDetail = ({ item }) => {
         <div className='product-single__contenido'>
           <p className='product-single__description'>{item.description}</p>
           <p className='product-single__price'>{"$" + item.price}</p>
-          <ItemCount initial={1} stock={5} onAdd={onAdd} />
+          <p className='product-single__stock'>STOCK: {item.stock}</p>
+          <ItemCount initial={1} stock={item.stock} onAdd={onAdd} />
         </div>
       </div>
     </div>
