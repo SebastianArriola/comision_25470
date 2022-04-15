@@ -57,11 +57,12 @@ const Cart = () => {
   }
 
   const handleInc = (stock) => {
-    setCount(count + 1)
+
+    count < stock && setCount(count + 1)
   }
 
   const handleDec = (stock) => {
-    setCount(count - 1);
+    count > 1 && setCount(count - 1)
   }
 
   const handleEdit = (i, quantity) => {
@@ -123,7 +124,7 @@ const Cart = () => {
         <p className='cart__price'>{"$" + item.item.price}</p>
         <p className='cart__cant'>U.{item.quantity}</p>
         <p className='cart__subtotal'>{"$" + item.item.price * item.quantity}</p>
-        {!edit[i] ? <Button onClick={() => handleEdit(i, item.quantity)} size="small"><EditIcon /></Button> : <div className="count__edit__grid"><Button onClick={handleDec}>-</Button><span>{count}</span><Button onClick={handleInc}>+</Button><Button className='check__center' onClick={() => { updateCart(item.item, count, i) }}><CheckIcon /></Button></div>}
+        {!edit[i] ? <Button onClick={() => handleEdit(i, item.quantity)} size="small"><EditIcon /></Button> : <div className="count__edit__grid"><Button onClick={handleDec}>-</Button><span>{count}</span><Button onClick={() => handleInc(item.item.stock)}>+</Button><Button className='check__center' onClick={() => { updateCart(item.item, count, i) }}><CheckIcon /></Button></div>}
         <Button style={{ maxWidth: '10rem', minWidth: '4rem', textAlign: "left" }} onClick={() => { removeItem(item.item) }}><DeleteRoundedIcon /></Button>
       </div>
       )
