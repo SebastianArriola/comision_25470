@@ -21,7 +21,8 @@ const ItemCount = ({ initial, stock, onAdd }) => {
     }
 
     const handleConfirm = () => {
-        toast.success(count+" productos agregados", {
+        
+        count > 1 ? toast.success(count+" productos agregados", {
             position: "top-right",
             autoClose: 3000,
             hideProgressBar: false,
@@ -29,7 +30,16 @@ const ItemCount = ({ initial, stock, onAdd }) => {
             pauseOnHover: true,
             draggable: true,
             progress: undefined,
-            });
+            })
+            : toast.success("Se ha agregado un producto", {
+                position: "top-right",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                })
         setConfirm(true);
         onAdd(count)
     }
