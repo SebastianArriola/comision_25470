@@ -1,5 +1,7 @@
 # Guitar South
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/50b5bf5f-4b8f-4efe-a7a1-2124a90f2743/deploy-status)](https://app.netlify.com/sites/ecommerce-react-coderhouse/deploys)
+
 ## Description
 
 Final Project for CoderHouse made in ReactJS.
