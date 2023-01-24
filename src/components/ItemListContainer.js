@@ -43,7 +43,7 @@ const ItemListContainer = (props) => {
     <>
       <Banner />
       <main className='products__container animate__animated animate__fadeIn'>
-        <h2 className='products__heading'>nuestros productos</h2>
+        <h2 className='products__heading'>productos</h2>
         {loading && <Loader />}
         <ItemList products={products} />
       </main>
