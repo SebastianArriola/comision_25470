@@ -15,6 +15,8 @@ The project consists of simulating the operation of an e-commerce using React, R
 - react-toastify (v8.2.0 +)
 - firebase (v9.6.10 +)
 - react material ui form validator (v3.0.0 +)
+- reduxjs/toolkit: 1.9.1
+- react-redux: 8.0.5
 
 ## Installation
 
