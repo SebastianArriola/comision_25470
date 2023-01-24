@@ -1,9 +1,8 @@
 import { Box } from '@material-ui/core';
 import Button from '@mui/material/Button';
-import React, { useContext, useState } from 'react'
+import React, {useState } from 'react'
 import { Link } from 'react-router-dom';
 import { serverTimestamp, addDoc, collection } from 'firebase/firestore';
-import { contexto } from './CartContext'
 import { db } from './firebaseConfig';
 import DeleteRoundedIcon from '@material-ui/icons/DeleteRounded';
 import EditIcon from '@material-ui/icons/Edit';

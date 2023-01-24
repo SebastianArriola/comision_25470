@@ -1,16 +1,11 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import { useDispatch } from 'react-redux';
 import { addItemStore } from '../cart/cartSlice';
-import { contexto } from './CartContext';
 import ItemCount from './ItemCount';
 
 const ItemDetail = ({ item }) => {
-
-  const contextCart = useContext(contexto);
-  const addItem = contextCart.addItem;
   const dispatch = useDispatch()
   const onAdd = (count) => {
-    addItem(item, count);
     let aMandar = {
 
       item: item,

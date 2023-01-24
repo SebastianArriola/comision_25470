@@ -1,9 +1,7 @@
 import * as React from 'react';
 import { Link } from 'react-router-dom';
 import logo from '../img/logo1.png'
-import { useDispatch, useSelector } from 'react-redux';
-import { useContext } from 'react';
-import { contexto } from './CartContext';
+import { useSelector } from 'react-redux';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 
 
