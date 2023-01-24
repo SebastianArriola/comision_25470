@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { useNavigate } from 'react-router-dom';
 import logo from '../img/logo1.png'
-import { useSelector } from 'react-redux';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import { Box, MenuItem} from '@material-ui/core';
 import AppBar from '@mui/material/AppBar'
