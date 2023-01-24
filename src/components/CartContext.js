@@ -44,16 +44,7 @@ export const CartContext = ({ children }) => {
   }
 
   const removeItem = (item) => {
-    const producto = cart.find(product => product.item === item)
-    toast.info(producto.item.title+" fue eliminado", {
-      position: "top-right",
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-    });    
+    const producto = cart.find(product => product.item === item)   
     setTotal(total - (producto.item.price * producto.quantity));
     setCantTotal(cantTotal - producto.quantity);
     let carro = cart.filter((product) => product.item.id !== item.id);

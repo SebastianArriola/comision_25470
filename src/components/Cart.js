@@ -1,4 +1,5 @@
-import { Box, Button } from '@material-ui/core';
+import { Box } from '@material-ui/core';
+import Button from '@mui/material/Button';
 import React, { useContext, useState } from 'react'
 import { Link } from 'react-router-dom';
 import { serverTimestamp, addDoc, collection } from 'firebase/firestore';
@@ -9,19 +10,18 @@ import EditIcon from '@material-ui/icons/Edit';
 import CheckIcon from '@material-ui/icons/Check';
 import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
 import { toast } from 'react-toastify';
+import { useDispatch, useSelector } from 'react-redux';
+import { clearStore, editCartStore, removeItemStore } from '../cart/cartSlice';
 
 const Cart = () => {
 
-  const contextCart = useContext(contexto);
-  const clear = contextCart.clear;
-  const cart = contextCart.cart;
-  const removeItem = contextCart.removeItem;
-  const total = contextCart.total;
-  const editCart = contextCart.editCart;
+  const cart = useSelector((state) => state.cart.cart)
+  const total = useSelector((state) => state.cart.total)
   const [count, setCount] = useState(1)
   const [edit, setEdit] = useState(new Array(cart.length));
   const [registered, setRegistered] = useState(false);
   const [numberBuy, setNumberBuy] = useState();
+  const dispatch = useDispatch()
   const [form, setForm] = useState({
 
     name: "",
@@ -39,6 +39,15 @@ const Cart = () => {
       ...form,
       [target.name]: target.value
     })
+
+  }
+
+  console.log("AAAA",cart)
+
+  const clearCart = () =>{
+
+    
+    dispatch(clearStore())
 
   }
 
@@ -75,8 +84,30 @@ const Cart = () => {
   const updateCart = (item, quantity, i) => {
     let aux = [...edit];
     aux[i] = false;
-    editCart(item, quantity);
+    let aMandar = {
+
+      item,
+      quantity
+
+    }
+    dispatch(editCartStore(aMandar))
     setEdit(aux);
+  }
+
+  const remove = (item)=>{
+
+    dispatch(removeItemStore(item));
+
+    toast.info(item.title+" fue eliminado", {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    }); 
+
   }
 
   const handleConfirm = () => {
@@ -117,7 +148,8 @@ const Cart = () => {
 
 
   return (
-    <div className='cart__container animate__animated animate__fadeIn'>{cart.length !== 0 ? cart.map((item, i) => {
+    <div className='cart__container animate__animated animate__fadeIn'>
+      {cart.length !== 0 ? cart.map((item, i) => {
       return (<div key={item.item.id} className='cart__grid'>
         <img className='cart__img' src={item.item.pictureUrl} alt="product_image"></img>
         <p className='cart__title'>{item.item.title}</p>
@@ -125,7 +157,7 @@ const Cart = () => {
         <p className='cart__cant'>U.{item.quantity}</p>
         <p className='cart__subtotal'>{"$" + item.item.price * item.quantity}</p>
         {!edit[i] ? <Button onClick={() => handleEdit(i, item.quantity)} size="small"><EditIcon /></Button> : <div className="count__edit__grid"><Button onClick={handleDec}>-</Button><span>{count}</span><Button onClick={() => handleInc(item.item.stock)}>+</Button><Button className='check__center' onClick={() => { updateCart(item.item, count, i) }}><CheckIcon /></Button></div>}
-        <Button style={{ maxWidth: '10rem', minWidth: '4rem', textAlign: "left" }} onClick={() => { removeItem(item.item) }}><DeleteRoundedIcon /></Button>
+        <Button style={{ maxWidth: '10rem', minWidth: '4rem', textAlign: "left" }} onClick={() => {remove(item.item)}}><DeleteRoundedIcon /></Button>
       </div>
       )
 
@@ -135,8 +167,8 @@ const Cart = () => {
       <Box textAlign="center" margin={5}><Link className="cart-link" to="/">Volver al catalogo</Link></Box></>}</>}
 
       {cart.length !== 0 && <><p className='cart__total'>TOTAL: {"$" + total}</p>
-        <Box textAlign="right"><Button onClick={clear} variant="outlined"><span className='cart__clear'>LIMPIAR CARRITO</span></Button></Box>
-        {registered ? <> {numberBuy === undefined && <><p className='cart__buy'>Registro exitoso, ya puede confirmar la compra!</p><Box textAlign={"center"}><Button variant='outlined' onClick={() => { handleConfirm(); clear(); }}>Confirmar compra</Button></Box></>}</> : <><p>Para confirmar la compra, debe dejar sus datos</p>
+        <Box textAlign="right"><Button onClick={clearCart} variant="contained" color="error" size="large"><span className="cart__clear-button">LIMPIAR CARRITO</span></Button></Box>
+        {registered ? <> {numberBuy === undefined && <><p className='cart__buy'>Registro exitoso, ya puede confirmar la compra!</p><Box textAlign={"center"}><Button variant='outlined' onClick={() => { handleConfirm(); clearCart(); }}>Confirmar compra</Button></Box></>}</> : <><p>Para confirmar la compra, debe dejar sus datos</p>
           <ValidatorForm className="form__contenedor" onSubmit={handleLogin}>
             <div className='form__div'>
               <TextValidator

@@ -7,11 +7,15 @@ import Footer from "./components/Footer";
 import ItemDetailContainer from "./components/ItemDetailContainer";
 import ItemListContainer from "./components/ItemListContainer";
 import NavBar from "./components/NavBar";
+import { Provider } from 'react-redux'
+import { store } from "./store/store";
 
 function App() {
   return (
     <CartContext>
+      <Provider store={store}>
 
+      
       <BrowserRouter>
         <NavBar className="header__container" />
         <Routes>
@@ -23,6 +27,7 @@ function App() {
         <Footer />
         <ToastContainer />
       </BrowserRouter>
+      </Provider>
     </CartContext>
 
   );
