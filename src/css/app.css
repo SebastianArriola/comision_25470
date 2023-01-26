@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;400&display=swap');
 
 :root {
     --primary: #d68808;
@@ -7,20 +7,28 @@
     --fuente-principal: 'Outfit', sans-serif;
 }
 html {
-    font-size: 62.5%;
+    font-size: 70.5%;
     box-sizing: border-box;
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'Poppins', sans-serif;
 }
 *, *:before, *:after {
     box-sizing: inherit;
 }
 body {
     font-size: 2rem;
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'Poppins', sans-serif;
     line-height: 1.5;
+    margin:0 !important;
 }
 img {
     max-width: 100%;
+}
+
+.header-font{
+
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+
 }
 
 [class*="__container"] {
@@ -184,6 +192,7 @@ img {
 
     font-size: 1.6rem;
     padding: 2rem;
+    font-weight: 400;
 
 }
 
@@ -258,20 +267,37 @@ img {
 .cart__clear-button{
 
     font-size: 15px;
+    color: #FFF;
+    font-family: 'Poppins', sans-serif;
 
 }
 
+.cart__clear-button2{
 
+    font-size: 15px;
+    color: #262626;
+    font-family: 'Poppins', sans-serif;
 
+}
+
+.footer__name{
+
+    color: "white" !important;
+    display: "flex";
+    margin: 0;
+
+}
 
 .footer__contenido{
 
     margin-top: 3rem;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
+    justify-content: center;
     background-color: var(--negro);
     padding: 1rem 2rem;
+    gap: 2rem
 
 }
 
@@ -291,9 +317,20 @@ img {
         display: flex;
         flex-direction: row;
         align-items: center;
-        justify-content: right;
+        justify-content: center;
         background-color: var(--negro);
-        padding: 0 2rem;
+        padding: 2rem 2rem;
+        gap: 2rem;
+    
+    }
+
+    .footer__name{
+
+        color: "white" !important;
+        margin: 0;
+        width: 100%;
+        text-align: left;
+        font-size: 1.7rem;
     
     }
 
@@ -438,7 +475,6 @@ img {
 
     display: flex;
     flex-direction:row;
-    border: 1px solid var(--negro);
     padding: 1rem;
     align-items: center;
     gap: 1rem;
@@ -449,7 +485,6 @@ img {
 .cart__img{
 
     width: 6rem;
-    border: 1px solid var(--primary);
     padding: 1rem;
 
 }
@@ -464,6 +499,7 @@ img {
 .cart__total{
 
     text-align: right;
+    font-size: 1.8rem
 
 }
 
@@ -518,7 +554,7 @@ img {
 
     .cart__container{
 
-        min-height: 55vh;
+        min-height: 63vh;
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -541,7 +577,6 @@ img {
 
         display: grid;
         grid-template-columns: repeat(7, 1fr);
-        border: 1px solid var(--negro);
         padding: 2rem;
         align-items: center;
         gap: 8rem;
@@ -552,7 +587,6 @@ img {
     .cart__img{
 
         width: 9rem;
-        border: 1px solid var(--primary);
         padding: 1rem;
     
     }
@@ -566,6 +600,7 @@ img {
     .cart__total{
     
         text-align: right;
+        font-size: 2.4rem;
     
     }
     
@@ -612,7 +647,6 @@ img {
     .cart__img{
 
         width: 9rem;
-        border: 1px solid var(--primary);
         padding: 1rem;
     
     }
@@ -643,7 +677,7 @@ img {
 
     .cart__container{
 
-        min-height: 66vh;
+        min-height: 77vh;
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -652,7 +686,7 @@ img {
 
     .product-single__container{
 
-        min-height: 65vh;
+        min-height: 74vh;
 
     }
     .loader__container{
@@ -668,14 +702,23 @@ img {
 
     border: 1px solid var(--negro);
     padding: 20px;
+    width: 100%;
+    max-width: 400px;
     font-size: 62.5%;
-    
+    margin:0 auto;    
 
 }
 
 .form__div{
 
     margin-bottom: 2rem;
+    
+
+}
+
+.cart__form-text{
+
+    text-align: center;
 
 }
 
@@ -691,19 +734,11 @@ img {
 
 }
 
-.product:hover{
+.footer__link{
 
-    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-    transform: scale(1.05, 1.05);
+ display: flex;
 
 }
-
-.product::after{ box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-  transition: opacity 0.3s ease-in-out;
-}
-.product:hover::after {
-    opacity: 1;
-  }
 
 .cart__cantTotal{
 

@@ -21,6 +21,7 @@ const Cart = () => {
   const [registered, setRegistered] = useState(false);
   const [numberBuy, setNumberBuy] = useState();
   const dispatch = useDispatch()
+  const [fButton, setFButton] = useState(false)
   const [form, setForm] = useState({
 
     name: "",
@@ -166,14 +167,15 @@ const Cart = () => {
       <Box textAlign="center" margin={5}><Link className="cart-link" to="/">Volver al catalogo</Link></Box></>}</>}
 
       {cart.length !== 0 && <><p className='cart__total'>TOTAL: {"$" + total}</p>
-        <Box textAlign="right"><Button onClick={clearCart} variant="contained" color="error" size="large"><span className="cart__clear-button">LIMPIAR CARRITO</span></Button></Box>
-        {registered ? <> {numberBuy === undefined && <><p className='cart__buy'>Registro exitoso, ya puede confirmar la compra!</p><Box textAlign={"center"}><Button variant='outlined' onClick={() => { handleConfirm(); clearCart(); }}>Confirmar compra</Button></Box></>}</> : <><p>Para confirmar la compra, debe dejar sus datos</p>
+        <Box textAlign="right"><Button onClick={clearCart} variant="contained" style={{padding: 10, borderRadius: 5}} onMouseOver={()=>setFButton(true)} onMouseOut={()=>setFButton(false)} color="error">{fButton ? <span className={"cart__clear-button"}>LIMPIAR CARRITO</span> : <span className={"cart__clear-button2"}>LIMPIAR CARRITO</span>}</Button></Box>
+        {registered ? <> {numberBuy === undefined && <><p className='cart__buy'>Registro exitoso, ya puede confirmar la compra!</p><Box textAlign={"center"}><Button variant='outlined' onClick={() => { handleConfirm(); clearCart(); }}>Confirmar compra</Button></Box></>}</> : <><p className="cart__form-text">Para confirmar la compra, debe dejar sus datos</p>
           <ValidatorForm className="form__contenedor" onSubmit={handleLogin}>
             <div className='form__div'>
               <TextValidator
                 label="Nombre"
                 onChange={handleInputChange}
                 name="name"
+                fullWidth
                 value={name}
                 className="form__field"
                 validators={['required']}
@@ -187,6 +189,7 @@ const Cart = () => {
                 onChange={handleInputChange}
                 name="phone"
                 value={phone}
+                fullWidth
                 className="form__field"
                 validators={['required', 'isNumber']}
                 errorMessages={['Este campo es obligatorio.', 'Debe ingresar un numero']}
@@ -199,6 +202,7 @@ const Cart = () => {
                 onChange={handleInputChange}
                 name="email"
                 value={email}
+                fullWidth
                 className="form__field"
                 validators={['required', 'isEmail']}
                 errorMessages={['Este campo es obligatorio.', 'Este email no es valido']}
@@ -210,6 +214,7 @@ const Cart = () => {
                 label="Email confirm"
                 onChange={handleInputChange}
                 name="repeatEmail"
+                fullWidth
                 value={repeatEmail}
                 className="form__field"
                 validators={['required', 'isEmail', 'isEmailMatch']}
@@ -218,7 +223,7 @@ const Cart = () => {
               />
             </div>
             <Box mt={3}>
-              <Button type="submit" variant='outlined'>Registrarse</Button>
+              <Button fullWidth type="submit" style={{height: 40, backgroundColor: "#FBD100"}} variant='contained'>Registrarse</Button>
             </Box>
           </ValidatorForm></>}
       </>}

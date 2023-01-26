@@ -25,7 +25,6 @@ export const cartSlice = createSlice({
             }
             state.total = (state.total + (item.price * quantity));
             state.cantTotal = (state.cantTotal + quantity);
-
         },
         clearStore: (state) => {
             state.cart = [];

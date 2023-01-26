@@ -72,7 +72,7 @@ const NavBar = () => {
                         aria-label="menu"
                         sx={{ mr: 2}}
                         
-                    onClick={handleOpenNavMenu2}><Typography color="black" fontSize={13}>CATEGORIAS</Typography></IconButton>
+                    onClick={handleOpenNavMenu2}><Typography color="black" fontSize={15} fontFamily={"Poppins"}>CATEGORIAS</Typography></IconButton>
                 <Menu id="menu-appbar" anchorEl={anchorElNav2} anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }} keepMounted transformOrigin={{
                         vertical: 'top',
                         horizontal: 'left',
@@ -80,7 +80,7 @@ const NavBar = () => {
                         open={Boolean(anchorElNav2)} onClose={handleCloseNavMenu2} sx={{ display: { xs: 'none', md: 'block' } }}>
                         {pages.map((page, index) => (
                             <MenuItem key={page} onClick={handleCloseNavMenu2}>
-                                <Typography textAlign="center" component='a' href={`/category/${index + 1}`} sx={{ textDecoration: 'none', color: 'inherit', fontSize: 13 }}>{page}</Typography>
+                                <Typography textAlign="center" component='a' href={`/category/${index + 1}`} sx={{ textDecoration: 'none', color: 'inherit', fontSize: 13, fontFamily: "Poppins" }}>{page}</Typography>
                             </MenuItem>
                         ))}
                     </Menu>
@@ -115,7 +115,7 @@ const NavBar = () => {
                         open={Boolean(anchorElNav)} onClose={handleCloseNavMenu} sx={{ display: { xs: 'block', md: 'none' } }}>
                         {pages.map((page, index) => (
                             <MenuItem key={page} onClick={handleCloseNavMenu}>
-                                <Typography textAlign="center" component='a' href={`/category/${index + 1}`} sx={{ textDecoration: 'none', color: 'inherit', fontSize: 15 }}>{page}</Typography>
+                                <Typography textAlign="center" component='a' href={`/category/${index + 1}`} sx={{ textDecoration: 'none', color: 'inherit', fontSize: 15, fontFamily: "Poppins" }}>{page}</Typography>
                             </MenuItem>
                         ))}
                     </Menu>
