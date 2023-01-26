@@ -22,6 +22,7 @@ const Cart = () => {
   const [numberBuy, setNumberBuy] = useState();
   const dispatch = useDispatch()
   const [fButton, setFButton] = useState(false)
+  const [cButton, setCButton] = useState(false)
   const [form, setForm] = useState({
 
     name: "",
@@ -123,6 +124,7 @@ const Cart = () => {
     qorder
       .then((resp) => {
         setNumberBuy(resp.id);
+        dispatch(clearStore())
       })
       .catch((err) => {
         console.log(err);
@@ -168,7 +170,7 @@ const Cart = () => {
 
       {cart.length !== 0 && <><p className='cart__total'>TOTAL: {"$" + total}</p>
         <Box textAlign="right"><Button onClick={clearCart} variant="contained" style={{padding: 10, borderRadius: 5}} onMouseOver={()=>setFButton(true)} onMouseOut={()=>setFButton(false)} color="error">{fButton ? <span className={"cart__clear-button"}>LIMPIAR CARRITO</span> : <span className={"cart__clear-button2"}>LIMPIAR CARRITO</span>}</Button></Box>
-        {registered ? <> {numberBuy === undefined && <><p className='cart__buy'>Registro exitoso, ya puede confirmar la compra!</p><Box textAlign={"center"}><Button variant='outlined' onClick={() => { handleConfirm(); clearCart(); }}>Confirmar compra</Button></Box></>}</> : <><p className="cart__form-text">Para confirmar la compra, debe dejar sus datos</p>
+        {registered ? <> {numberBuy === undefined && <><p className='cart__buy'>Registro exitoso, ya puede confirmar la compra!</p><Box textAlign={"center"}><Button color='success' onMouseOver={()=>setCButton(true)} onMouseOut={()=>setCButton(false)} variant="contained" style={{padding: 10, borderRadius: 5}} onClick={() => { handleConfirm();}}>{cButton ? <span className={"cart__clear-button"}>Confirmar compra</span> : <span className={"cart__clear-button2"}>Confirmar compra</span>}</Button></Box></>}</> : <><p className="cart__form-text">Para confirmar la compra, debe dejar sus datos</p>
           <ValidatorForm className="form__contenedor" onSubmit={handleLogin}>
             <div className='form__div'>
               <TextValidator
@@ -223,7 +225,7 @@ const Cart = () => {
               />
             </div>
             <Box mt={3}>
-              <Button fullWidth type="submit" style={{height: 40, backgroundColor: "#FBD100"}} variant='contained'>Registrarse</Button>
+              <Button fullWidth type="submit" style={{height: 40, backgroundColor: "#FF8700"}} variant='contained'>Registrarse</Button>
             </Box>
           </ValidatorForm></>}
       </>}
